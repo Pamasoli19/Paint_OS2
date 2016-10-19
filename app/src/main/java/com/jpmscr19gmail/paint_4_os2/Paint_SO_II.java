@@ -8,8 +8,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 
-public class Paint_SO_II extends AppCompatActivity {
+public class Paint_SO_II extends AppCompatActivity implements  View.OnClickListener {
+
+    ImageButton negro;
+    ImageButton blanco;
+    ImageButton rojo;
+    ImageButton verde;
+    ImageButton azul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +24,8 @@ public class Paint_SO_II extends AppCompatActivity {
         setContentView(R.layout.activity_paint__so__ii);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        
 
     }
 
