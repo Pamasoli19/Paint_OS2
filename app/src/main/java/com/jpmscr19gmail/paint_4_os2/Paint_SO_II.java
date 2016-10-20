@@ -25,7 +25,11 @@ public class Paint_SO_II extends AppCompatActivity implements  View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        
+        negro = (ImageButton)findViewById(R.id.colornegro);
+        blanco = (ImageButton)findViewById(R.id.colorblanco);
+        rojo = (ImageButton)findViewById(R.id.colorrojo);
+        verde = (ImageButton)findViewById(R.id.colorverde);
+        azul = (ImageButton)findViewById(R.id.colorazul);
 
     }
 
@@ -51,5 +55,23 @@ public class Paint_SO_II extends AppCompatActivity implements  View.OnClickListe
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.colornegro:
+                break;
+            case R.id.colorblanco:
+                break;
+            case R.id.colorazul:
+                break;
+            case R.id.colorverde:
+                break;
+            case R.id.colorrojo:
+                break;
+            default:
+                break;
+        }
     }
 }
