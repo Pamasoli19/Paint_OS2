@@ -28,30 +28,42 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/button4"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:text="Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/button3"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:text="Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/button2"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:text="Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/button"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
+
+    <view
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:layout_height="0dp"
+        class="com.jpmscr19gmail.paint_4_os2.Lienzo"
+        android:id="@+id/view"
+        android:background="#ffffffff"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -61,35 +73,35 @@
 
         <ImageButton
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/alturacolor"
             app:srcCompat="@android:color/holo_orange_light"
             android:id="@+id/imageButton5"
             android:layout_weight="1" />
 
         <ImageButton
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/alturacolor"
             app:srcCompat="@android:color/black"
             android:id="@+id/imageButton4"
             android:layout_weight="1" />
 
         <ImageButton
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/alturacolor"
             app:srcCompat="@android:color/holo_red_dark"
             android:id="@+id/imageButton3"
             android:layout_weight="1" />
 
         <ImageButton
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/alturacolor"
             app:srcCompat="@android:color/holo_green_light"
             android:id="@+id/imageButton2"
             android:layout_weight="1" />
 
         <ImageButton
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/alturacolor"
             app:srcCompat="@android:color/holo_blue_dark"
             android:id="@+id/imageButton"
             android:layout_weight="1" />
