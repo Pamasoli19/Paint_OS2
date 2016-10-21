@@ -1,5 +1,6 @@
 package com.jpmscr19gmail.paint_4_os2;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class Paint_SO_II extends AppCompatActivity implements  View.OnClickListener {
 
@@ -17,6 +19,18 @@ public class Paint_SO_II extends AppCompatActivity implements  View.OnClickListe
     ImageButton rojo;
     ImageButton verde;
     ImageButton azul;
+    Lienzo lienzo;
+    float ppequenyo;
+    float pmediano;
+    float pgrande;
+    float pdefecto;
+    ImageButton trazo;
+    ImageButton nuevo;
+    ImageButton borrar;
+    ImageButton guardar;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +44,29 @@ public class Paint_SO_II extends AppCompatActivity implements  View.OnClickListe
         rojo = (ImageButton)findViewById(R.id.colorrojo);
         verde = (ImageButton)findViewById(R.id.colorverde);
         azul = (ImageButton)findViewById(R.id.colorazul);
+        trazo = (ImageButton)findViewById(R.id.trazo);
+        nuevo = (ImageButton)findViewById(R.id.nuevo);
+        borrar = (ImageButton)findViewById(R.id.borrar);
+        guardar = (ImageButton)findViewById(R.id.guardar);
 
+
+        negro.setOnClickListener(this);
+        blanco.setOnClickListener(this);
+        rojo.setOnClickListener(this);
+        verde.setOnClickListener(this);
+        azul.setOnClickListener(this);
+        trazo.setOnClickListener(this);
+        nuevo.setOnClickListener(this);
+        borrar.setOnClickListener(this);
+        guardar.setOnClickListener(this);
+
+        lienzo = (Lienzo)findViewById(R.id.Lienzo);
+
+        ppequenyo= 10;
+        pmediano= 20;
+        pgrande= 30;
+
+        pdefecto= pmediano;
     }
 
 
@@ -59,16 +95,46 @@ public class Paint_SO_II extends AppCompatActivity implements  View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        String color = null;
         switch (v.getId()){
             case R.id.colornegro:
+                color = v.getTag().toString();
+                lienzo.setColor(color);
                 break;
             case R.id.colorblanco:
+                color = v.getTag().toString();
+                lienzo.setColor(color);
                 break;
             case R.id.colorazul:
+                color = v.getTag().toString();
+                lienzo.setColor(color);
                 break;
             case R.id.colorverde:
+                color = v.getTag().toString();
+                lienzo.setColor(color);
                 break;
             case R.id.colorrojo:
+                color = v.getTag().toString();
+                lienzo.setColor(color);
+                break;
+            case R.id.trazo:
+                final Dialog tamanyopunto  = new Dialog(this);
+                tamanyopunto.setTitle("Tamaño del punto:");
+                tamanyopunto.setContentView(R.layout.punto_size);
+                TextView smallBtn = (TextView)tamanyopunto.findViewById(R.id.tpequenyo);
+                smallBtn.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+
+                        Lienzo.setTamanyoPunto(ppequenyo);
+                    }
+                }
+                break;
+            case R.id.nuevo:
+                break;
+            case R.id.borrar:
+                break;
+            case R.id.guardar:
                 break;
             default:
                 break;
