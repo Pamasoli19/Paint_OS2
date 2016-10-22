@@ -13,4 +13,9 @@ public class Lienzo extends View{
     public Lienzo(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
+
+    private void setupDrawing(){
+
+    }
+
 }

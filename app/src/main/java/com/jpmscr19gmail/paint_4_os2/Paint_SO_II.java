@@ -20,7 +20,7 @@ public class Paint_SO_II extends AppCompatActivity {
 
     }
 
-    
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
