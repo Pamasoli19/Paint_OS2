@@ -19,7 +19,7 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_weight="1.08"
         android:layout_height="0dp">
 
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/button"
             android:layout_weight="1"
-            android:src="@drawable/ic_stat_name"
+            android:src="@drawable/nuevo"
             />
 
         <ImageButton
@@ -36,14 +36,15 @@
             android:layout_height="wrap_content"
             android:id="@+id/button2"
             android:layout_weight="1"
-            android:src="@drawable/ic_stat_name"/>
+            android:src="@drawable/trazo"
+            />
 
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/button3"
             android:layout_weight="1"
-            android:src="@drawable/ic_stat_name"
+            android:src="@drawable/borrar"
             />
 
         <ImageButton
@@ -51,7 +52,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/button4"
             android:layout_weight="1"
-            android:src="@drawable/ic_stat_name"
+            android:src="@drawable/guardar"
             />
 
     </LinearLayout>
