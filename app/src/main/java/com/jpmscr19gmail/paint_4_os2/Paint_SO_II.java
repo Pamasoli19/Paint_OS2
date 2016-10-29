@@ -1,9 +1,13 @@
 package com.jpmscr19gmail.paint_4_os2;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+//import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -11,6 +15,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.UUID;
 
 public class Paint_SO_II extends AppCompatActivity implements  View.OnClickListener {
 
@@ -19,7 +26,7 @@ public class Paint_SO_II extends AppCompatActivity implements  View.OnClickListe
     ImageButton rojo;
     ImageButton verde;
     ImageButton azul;
-    Lienzo lienzo;
+    private Lienzo lienzo;
     float ppequenyo;
     float pmediano;
     float pgrande;
@@ -28,8 +35,6 @@ public class Paint_SO_II extends AppCompatActivity implements  View.OnClickListe
     ImageButton nuevo;
     ImageButton borrar;
     ImageButton guardar;
-
-
 
 
     @Override
@@ -96,7 +101,7 @@ public class Paint_SO_II extends AppCompatActivity implements  View.OnClickListe
     @Override
     public void onClick(View v) {
         String color = null;
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.colornegro:
                 color = v.getTag().toString();
                 lienzo.setColor(color);
@@ -118,25 +123,131 @@ public class Paint_SO_II extends AppCompatActivity implements  View.OnClickListe
                 lienzo.setColor(color);
                 break;
             case R.id.trazo:
-                final Dialog tamanyopunto  = new Dialog(this);
+                final Dialog tamanyopunto = new Dialog(this);
                 tamanyopunto.setTitle("Tamaño del punto:");
                 tamanyopunto.setContentView(R.layout.punto_size);
-                TextView smallBtn = (TextView)tamanyopunto.findViewById(R.id.tpequenyo);
-                smallBtn.setOnClickListener(new View.OnClickListener(){
+                TextView smallBtn = (TextView) tamanyopunto.findViewById(R.id.tpequenyo);
+                smallBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Lienzo.setBorrado(false);
                         Lienzo.setTamanyoPunto(ppequenyo);
+
+                        tamanyopunto.dismiss();
                     }
-                }
+                });
+                TextView mediumBtn = (TextView) tamanyopunto.findViewById(R.id.tmediano);
+                mediumBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Lienzo.setBorrado(false);
+                        Lienzo.setTamanyoPunto(pmediano);
+
+                        tamanyopunto.dismiss();
+                    }
+                });
+                TextView largeBtn = (TextView) tamanyopunto.findViewById(R.id.tgrande);
+                largeBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Lienzo.setBorrado(false);
+                        Lienzo.setTamanyoPunto(pgrande);
+
+                        tamanyopunto.dismiss();
+                    }
+                });
+
+                tamanyopunto.show();
+
                 break;
             case R.id.nuevo:
+                //AlertDialog.Builder newDialog = new AlertDialog.Builder(this);
+                //newDialog.setTitle("Nuevo Dibujo");
+                //newDialog.setMessage("¿Comenzar nuevo dibujo (Perdera su dibujo)");
+                //newDialog.setPositiveButton("Aceptar", (dialog, which) {
+
+                //    lienzo.NuevoDibujo();
+                //     dialog.dismiss();
+
+            //});
+                //newDialog.setNegativeButton("Cancelar", (dialog, which) {
+                //     dialog.cancel();
+            //});
+                //newDialog.show();
+
                 break;
             case R.id.borrar:
+                final Dialog borrarpunto  = new Dialog(this);
+                borrarpunto.setTitle("Tamaño de borrardo:");
+                borrarpunto.setContentView(R.layout.punto_size);
+                TextView smallBtnBorrar = (TextView)borrarpunto.findViewById(R.id.tpequenyo);
+                smallBtnBorrar.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        Lienzo.setBorrado(true);
+                        Lienzo.setTamanyoPunto(ppequenyo);
+
+                        borrarpunto.dismiss();
+                    }
+                });
+                TextView mediumBtnBorrar = (TextView)borrarpunto.findViewById(R.id.tmediano);
+                mediumBtnBorrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Lienzo.setBorrado(true);
+                        Lienzo.setTamanyoPunto(pmediano);
+
+                        borrarpunto.dismiss();
+                    }
+                });
+                TextView largeBtnBorrar = (TextView)borrarpunto.findViewById(R.id.tgrande);
+                largeBtnBorrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Lienzo.setBorrado(true);
+                        Lienzo.setTamanyoPunto(pgrande);
+
+                        borrarpunto.dismiss();
+                    }
+                });
+
+                borrarpunto.show();
                 break;
             case R.id.guardar:
+
+                final AlertDialog.Builder salvarDibujo = new AlertDialog.Builder(this);
+                salvarDibujo.setTitle("Salvar dibujo");
+                salvarDibujo.setMessage("¿Salvar Dibujo a la Galeria?");
+                salvarDibujo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int which){
+
+                        lienzo.setDrawingCacheEnabled(true);
+
+                        String imgSaved = MediaStore.Images.Media.insertImage(
+                                getContentResolver(),lienzo.getDrawingCache(),
+                                UUID.randomUUID().toString()+".png", "drawing");
+                        if(imgSaved!=null){
+                            Toast savedToast = Toast.makeText(getApplicationContext(),
+                                    "Dibujo Salvado en la Galeria!", Toast.LENGTH_SHORT);
+                            savedToast.show();
+                        }
+                        else{
+                            Toast unsavedToast = Toast.makeText(getApplicationContext(),
+                                    "¡Error! La imagen no ha podido ser salvada. ", Toast.LENGTH_SHORT);
+                            unsavedToast.show();
+                        }
+                        lienzo.destroyDrawingCache();
+
+                        //salvarDibujo.setNegativeButton("Cancelar", new DialogInterface.OnClickListener(){
+                           // public void onClick(DialogInterface dialog, int which){
+                                dialog.cancel();
+                    }
+                });
+                salvarDibujo.show();
                 break;
-            default:
+
+                default:
+
                 break;
         }
     }
